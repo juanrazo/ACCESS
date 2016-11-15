@@ -1,4 +1,4 @@
-package com.synergyteam.ddns;
+package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

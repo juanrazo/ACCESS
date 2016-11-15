@@ -1,4 +1,4 @@
-package com.synergyteam.ddns;
+package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
-public class DMHandler extends DatabaseHandler {
+public class SSOHandler extends DatabaseHandler {
 
 	@Override
 	protected String[] retrieveDatavaseInfo(String[] query) {
@@ -27,9 +27,10 @@ public class DMHandler extends DatabaseHandler {
 		return null;
 	}
 	
-	public DMHandler(){
+	public SSOHandler(){
 		//TODO fill in variable initialization
 	}
+	
 	static private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static private final String DB_NAME = "/pestrada2";
 	
@@ -45,5 +46,4 @@ public class DMHandler extends DatabaseHandler {
 	private String[] result;
 	
 	static private final String IP_ADDR = "jdbc:mysql://synergyteam.ddns.net:" + PORT + DB_NAME +  "?autoReconnect=true&useSSL=false";
-
 }

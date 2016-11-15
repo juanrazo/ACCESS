@@ -1,4 +1,4 @@
-package com.synergyteam.ddns;
+package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
 public class QueryHandler {
 	
