@@ -7,11 +7,14 @@ import java.util.HashMap;
  */
 public class Test {
     public static void main(String[] arg){
-        RolesResponsibilitiesManager rrm = new RolesResponsibilitiesManager();
+        RoleAccessManager rrm = new RoleAccessManager();
         System.out.println(rrm.associatePermissions(Roles.PA));
         HashMap testMap = new HashMap();
-        testMap.put("Steve",rrm.associatePermissions(Roles.AE));
-        System.out.println(testMap.get("Steve").toString());
-
+        testMap.put("Steve", rrm.associatePermissions(Roles.AE));
+        testMap.put("Gator", rrm.associatePermissions(Roles.PI));
+        testMap.put("Juan", rrm.associatePermissions(Roles.PA));
+        System.out.println("Steves's Permissions: " + testMap.get("Steve").toString());
+        System.out.println("Gator's Permissions: " + testMap.get("Gator").toString());
+        System.out.println("Juans's Permissions: " + testMap.get("Juan").toString());
     }
 }

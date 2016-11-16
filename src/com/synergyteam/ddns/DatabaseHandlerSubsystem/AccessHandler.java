@@ -1,6 +1,7 @@
 package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,15 +33,24 @@ public class AccessHandler extends DatabaseHandler {
 	
 	@Override
 	protected String[] retrieveDatavaseInfo(String[] query) {
+		try{
+			this.conn = intializeConnection();
+
+		} catch(SQLException | ClassNotFoundException e){
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected Connection intializeConnection() throws ClassNotFoundException, SQLException{
-		// TODO Auto-generated method stub
-		return null;
+	protected final Connection intializeConnection() throws ClassNotFoundException, SQLException{
+		Class.forName(JDBC_DRIVER);
+		System.out.println("starting connection");
+		System.out.println(this.ip);
+		return DriverManager.getConnection(this.ip, this.user, this.pass);
 	}
+
 	@Override
 	protected PreparedStatement prepStmt(String[] query) throws SQLException {
 		// TODO Auto-generated method stub
@@ -48,7 +58,7 @@ public class AccessHandler extends DatabaseHandler {
 	}
 	
 	public AccessHandler(){
-		
+		this.conn = null;
 	}
 	static private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static private final String DB_NAME = "/pestrada2";
