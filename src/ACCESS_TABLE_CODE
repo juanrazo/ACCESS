@@ -1,0 +1,92 @@
+CREATE TABLE Project(
+PID int NOT NULL PRIMARY KEY,
+FundedProject BOOLEAN NOT NULL,
+Title varchar(255) NOT NULL,
+Description varchar(255)NOT NULL,
+StartDate DATE NOT NULL,
+EndDate DATE NOT NULL,
+Goal varchar(255) NOT NULL,
+Objective varchar(255) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE NonFundedProjectMembership(
+PID int,
+Membership varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+CREATE TABLE ProjectKeywordTable(
+PID int,
+KEYWORD varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+CREATE TABLE FundedProjectPI(
+PID int,
+PIName varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+CREATE TABLE FundedProjectCoPI(
+PID int,
+CoPIName varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+CREATE TABLE ProjectAssociatedInitiative(
+PID int,
+IID int,
+FOREIGN KEY (PID) REFERENCES Project(PID),
+FOREIGN KEY (IID) REFERENCES Initiative(IID)
+) ENGINE=InnoDB;
+
+CREATE TABLE Initiative(
+IID int NOT NULL PRIMARY KEY,
+Title varchar(255) NOT NULL,
+Category varchar(255) NOT NULL,
+Description varchar(255) NOT NULL,
+StartDate DATE NOT NULL,
+EndDate DATE NOT NULL,
+Purpose varchar(255) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE InitiativeMembership(
+IID int,
+Membership varchar(255),
+FOREIGN KEY (IID) REFERENCES Initiative(IID)
+) ENGINE=InnoDB;
+
+CREATE TABLE InitiativeKeywordTable(
+IID int,
+KEYWORD varchar(255),
+FOREIGN KEY (IID) REFERENCES Initiative(IID)
+) ENGINE=InnoDB;
+
+CREATE TABLE InitiativeAssociatedActivity(
+IID int,
+AID int,
+FOREIGN KEY (IID) REFERENCES Initiative(IID),
+FOREIGN KEY (AID) REFERENCES Activity(AID)
+) ENGINE=InnoDB;
+
+CREATE TABLE InitiativeWebsite(
+IID int,
+Website varchar(255),
+FOREIGN KEY (IID) REFERENCES Initiative(IID)
+) ENGINE=InnoDB;
+
+CREATE TABLE Activity(
+AID int NOT NULL PRIMARY KEY,
+Title varchar(255) NOT NULL,
+Description varchar(255) NOT NULL,
+StartDate DATE NOT NULL,
+EndDate DATE NOT NULL,
+Classification varchar(255) NOT NULL,
+Semester varchar(255) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE ActivityKeywordTable(
+AID int,
+KEYWORD varchar(255),
+FOREIGN KEY (AID) REFERENCES Activity(AID)
+) ENGINE=InnoDB;
