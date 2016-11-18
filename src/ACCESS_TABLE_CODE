@@ -1,23 +1,29 @@
 CREATE TABLE Project(
-PID int NOT NULL PRIMARY KEY,
+PID int NOT NULL UNIQUE PRIMARY KEY,
 FundedProject BOOLEAN NOT NULL,
 Title varchar(255) NOT NULL,
 Description varchar(255)NOT NULL,
 StartDate DATE NOT NULL,
 EndDate DATE NOT NULL,
-Goal varchar(255) NOT NULL,
-Objective varchar(255) NOT NULL
+Goal varchar(255) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE NonFundedProjectMembership(
 PID int,
-Membership varchar(255),
+UID int UNIQUE,
+Role varchar(255) NOT NULL,
 FOREIGN KEY (PID) REFERENCES Project(PID)
 ) ENGINE=InnoDB;
 
 CREATE TABLE ProjectKeywordTable(
 PID int,
 KEYWORD varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+CREATE TABLE ProjectObjectiveTable(
+PID int,
+Objective varchar(255),
 FOREIGN KEY (PID) REFERENCES Project(PID)
 ) ENGINE=InnoDB;
 
@@ -33,6 +39,20 @@ CoPIName varchar(255),
 FOREIGN KEY (PID) REFERENCES Project(PID)
 ) ENGINE=InnoDB;
 
+CREATE TABLE ProjectWebsite(
+PID int,
+W_URL varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+CREATE TABLE ProjectDocument(
+PID int,
+DOC_TYPE varchar(255),
+DOC_URL varchar(255),
+FOREIGN KEY (PID) REFERENCES Project(PID)
+) ENGINE=InnoDB;
+
+
 CREATE TABLE ProjectAssociatedInitiative(
 PID int,
 IID int,
@@ -41,7 +61,7 @@ FOREIGN KEY (IID) REFERENCES Initiative(IID)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Initiative(
-IID int NOT NULL PRIMARY KEY,
+IID int NOT NULL UNIQUE PRIMARY KEY,
 Title varchar(255) NOT NULL,
 Category varchar(255) NOT NULL,
 Description varchar(255) NOT NULL,
@@ -52,7 +72,8 @@ Purpose varchar(255) NOT NULL
 
 CREATE TABLE InitiativeMembership(
 IID int,
-Membership varchar(255),
+UID int UNIQUE,
+Role varchar(255) NOT NULL,
 FOREIGN KEY (IID) REFERENCES Initiative(IID)
 ) ENGINE=InnoDB;
 
@@ -71,12 +92,19 @@ FOREIGN KEY (AID) REFERENCES Activity(AID)
 
 CREATE TABLE InitiativeWebsite(
 IID int,
-Website varchar(255),
+W_URL varchar(255),
+FOREIGN KEY (IID) REFERENCES Initiative(IID)
+) ENGINE=InnoDB;
+
+CREATE TABLE InitiativeDocument(
+IID int,
+DOC_TYPE varchar(255),
+DOC_URL varchar(255),
 FOREIGN KEY (IID) REFERENCES Initiative(IID)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Activity(
-AID int NOT NULL PRIMARY KEY,
+AID int NOT NULL UNIQUE PRIMARY KEY,
 Title varchar(255) NOT NULL,
 Description varchar(255) NOT NULL,
 StartDate DATE NOT NULL,

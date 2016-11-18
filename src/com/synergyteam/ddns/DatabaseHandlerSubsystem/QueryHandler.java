@@ -1,45 +1,199 @@
 package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
-public class QueryHandler {
-	
-	/*
-	This method accepts a string array. The first element in query (query[0]) 
-	array to contain a 0 or 1. A 0 indicates the query generated will be a 
-	retrieval, and a 1 will indicate the query generated will be an insert 
-	statement. The next element in query (query[1]) will contain a valid SQL 
-	table name utilized by one of the databases in the ACCESS system. The 
-	subsequent elements will contain required fields (retrieve statement && 
-	insert statement. If the query is an insert statement, the values following 
-	the field values will contain the values required by each field for an insert 
-	statement to execute successfully.
-	*/
-	//@ Pre:  
-	//@ query[0] contains 0 or a 1; if query[0] == 0 generate a 
-	//@ retrieve statement. Else, generate an insert statement. 
-	//@ query[1] contains a valid table name utilized in the ACCESS 
-	//@ system.
-	//@ query[2]…query[n] contain fields followed by values required to //@ successfully insert or retrieve information.
+import java.util.Date;	
 
-	//@ Post: 
-	//@ensures \result (result[0] != NULL);
-	//@ insert results: 
-	//@ \result[0] == “Update successful” if insert was successful, 
-	//@ “Unable to update” if insert was unsuccessful; 
-	//@ retrieve information results:
-	//@ \result[0]…result[n-1] == retrieved information from query; 
-	//@ \result[n] == query used to retrieve information;
-	
-	public String[] generateQuery(String[] query){
-		
-		return null;
-	}
-	public QueryHandler(){
-		//TODO fill in constructor initialization
-	}
-	
+public class QueryHandler {
+
+    public QueryHandler() {
+        //TODO fill in constructor initialization
+    }
+
 	/* Pre-defined database retrieval (SELECT) queries */
-	private static String[] insertQueries;
-	
+    //private static Queries[] insertQueries;
+
 	/* Pre-defined database insertion (INSERT) queries */
-	private static String[] selectQueries;
+    //private static Queries[] selectQueries;
+
+    /*
+    This method accepts an integer for the first argument. The integer must be positive, cannont exist in the set
+    of Project IDs already stored in the ACCESS database. If the set of Project IDs is empty, then the pid should
+    equal 1, else it should equal the old value of pid + 1. The seconded argument accepts a BOOLEAN that should
+    only be TRUE if the project is funded. The third argument is a string for the project title. The constraint on
+    the title is it must be a valid project title. The fourth argument is a Date for the start date. The fifth
+    argument is a Date for the end date. The start date must be a date before the end date. The last argument is a
+    string for the project goal. The constraint for the goal is it must be a valid project goal. The method
+    returns 0 if the insert was unsuccessful, or 1 if the insert was successful.
+    //@ PRE:
+    //@requires (\foral pid | (pid \notexists {Project_ID} )) &&
+    //@ (pid == (!{Project_ID})? 1 : (pid ==
+    //@ \old pid + 1));
+    //@ fundedProject == (!pid.isFunded)? FALSE : TRUE;
+    //@ title == valid project.name;
+    //@ startDate < endDate;
+    //@ goal == valid project.goal;
+    //@ POST:
+    //@ensures \result (!SQLException && executeUpdate== 1)? 1 : 0);
+    */
+    public int insertProject(int pid, boolean fundedProject, String title, Date startDate, Date endDate, String goal) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts a userID and role which are then associated to the pid. The method returns 0
+    if the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertProjectMembership(int pid, int uid, String role) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts a keyword which is then associated to the pid. The method returns 0 if the
+    insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertProjectKeyword(int pid, String keyword) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts an iid (initiative id) that is contained in the set of Initiative IDs stored in
+    the ACCESS database. The iid is then associated to the pid. The method returns 0 if the insert was unsuccessful,
+    or 1 if the insert was successful. */
+    public int insertProjectAssociatedInitiative(int pid, int iid) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts an objective which is then associated to the pid. The method returns 0 if the
+    insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertProjectObjective(int pid, String objective) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts a valid userID which are then associated as the PI to the pid. The method
+    returns 0 if the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertFundedProjectPI(int pid, int pi_uid) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts a userID which are then associated as the CoPI to the pid. The method returns 0
+    if the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertFundedProjectCoPI(int pid, int copi_uid) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts a website URL which is then associated to the pid. The method returns 0 if
+    the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertProjectWebsite(int pid, String url) {
+        return 0;
+    }
+
+    /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
+    database. This method then accepts a document URL which is then associated to the pid. The method returns 0 if
+    the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertProjectDocumentAttachment(int pid, String document_url) {
+        return 0;
+    }
+
+    /*
+    This method accepts an integer for the first argument. The integer must be positive, cannot exist in the set of
+    Initiative IDs already stored in the ACCESS database. If the set of Initiative IDs is empty, then the iid should
+    equal 1, else it should equal the old value of iid + 1. The seconded argument is a string for the initiative
+    title. The constraint on the title is it must be a valid initiative title. The third argument is a string for
+    the initiative category. The constraint on the category is it must exist within the predefined set of Categories.
+    The fourth argument is a string for the initiative description. The constraint on the description is it must be
+    a valid description of the initiative. The fifth argument is a Date for the start date. The sixth argument is a
+    Date for the end date. The start date must be a date before the end date. The last argument is a string for the
+    initiative purpose. The constraint for the purpose is it must be a valid initiative purpose statement. The method
+    returns 0 if the insert was unsuccessful, or 1 if the insert was successful.
+    //@ PRE:
+    //@requires (\foral iid | (iid !(\exists {Initiative_ID}))) &&
+    //@ (iid == (!{Initiative_ID})? 1 : (iid ==
+    //@ \old iid + 1));
+    //@ title == valid initiative.name;
+    //@ category \exist {Category};
+    //@ description == valid initiative.description;
+    //@ startDate < endDate;
+    //@ purpose == valid initiative.purpose;
+    //@ POST:
+    //@ensures \result (!SQLException && executeUpdate== 1)? 1 : 0);
+    */
+    public int insertInitiative(int iid, String title, String category, String description, Date startDate,
+                                Date endDate, String purpose) {
+        return 0;
+    }
+
+    /* This method accepts a iid (initiative id) that is contained in the set of Initiative IDs stored in the ACCESS
+    database. This method then accepts a valid userID and role which are then associated to the iid. The method
+    returns 0 if the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertInitiativeMembership(int iid, int uid, String role) {
+        return 0;
+    }
+
+    /* This method accepts a iid (initiative id) that is contained in the set of Initiative IDs stored in the ACCESS
+    database. This method then accepts a keyword which is then associated to the iid. The method returns 0 if the
+    insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertInitiativeKeword(int iid, String keyword) {
+        return 0;
+    }
+
+    /* This method accepts a iid (initiative id) that is contained in the set of Initiative IDs stored in the ACCESS
+    database. This method then accepts an aid (activity id) that is contained in the set of Activity IDs stored in the
+    ACCESS database. The aid is then associated to the iid. The method returns 0 if the insert was unsuccessful, or 1
+    if the insert was successful. */
+    public int insertInitiativeAssociatedActivity(int iid, int aid) {
+        return 0;
+    }
+
+    /* This method accepts a iid (initiative id) that is contained in the set of Initiative IDs stored in the ACCESS
+    database. This method then accepts a website URL which is then associated to the iid. The method returns 0 if the
+    insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertInitiativeWebsite(int iid, String url) {
+        return 0;
+    }
+
+    /* This method accepts a iid (initiative id) that is contained in the set of Initiative IDs stored in the ACCESS
+    database. This method then accepts a document URL which is then associated to the iid. The method returns 0 if
+    the insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertInitiativeDocumentAttachment(int iid, String document_url) {
+        return 0;
+    }
+
+    ;
+
+    /*
+    This method accepts an integer for the first argument. The integer must be positive, cannot exist in the set of
+    Activity IDs already stored in the ACCESS database. If the set of Activity IDs is empty, then the aid should
+    equal 1, else it should equal the old value of aid + 1. The seconded argument is a string for the activity title.
+    The constraint on the title is it must be a valid activity title. The third argument is a string is a string for
+    the activity description. The constraint on the description is it must be a valid description of the activity. The
+    fourth argument is a Date for the start date. The fifth argument is a Date for the end date. The start date must be
+    a date before the end date. The sixth argument for the activity classification. The constraint on the
+    classification is it must exist within the predefined set of classifications. The last argument is a string for
+    the activity semester. The constraint for the semester is it must be a valid semester (past or current only). The
+    method returns 0 if the insert was unsuccessful, or 1 if the insert was successful.
+    //@ PRE:
+    //@requires (\forall aid | (aid !(\exists {Activity_ID}))) &&
+    //@ (aid == (!{Activty_ID})? 1 : (aid ==
+    //@ \old aid + 1));
+    //@ title == valid activity.name;
+    //@ description == valid initiative.description;
+    //@ startDate < endDate;
+    //@ classification == valid activity.classification;
+    //@ semester <= current semester;
+    //@ POST:
+    //@ensures \result (!SQLException && executeUpdate== 1)? 1 : 0);
+    */
+    public int insertActivity(int aid, String title, String description, Date startDate, Date endDate,
+                              String classification, String semester) {
+        return 0;
+    }
+
+    /* This method accepts an aid (activity id) that is contained in the set of Activity IDs stored in the ACCESS
+    database. This method then accepts a keyword which is then associated to the aid. The method returns 0 if the
+    insert was unsuccessful, or 1 if the insert was successful. */
+    public int insertActivityKeyword(int aid, String keyword) {
+        return 0;
+    }
+
 }
