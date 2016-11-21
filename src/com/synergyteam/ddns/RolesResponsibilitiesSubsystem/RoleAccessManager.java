@@ -19,21 +19,39 @@ Elsa.
 public class RoleAccessManager {
 
     public Permissions associatePermissions(Roles role){
-        switch(role) {
+        System.out.printf("**** Testing Switch statements **** : ");
+        switch(role){
             case PI:
+                System.out.printf("Permissions: %s\n",Permissions.OWNER.toString());
                 return Permissions.OWNER;
             case CO_PI:
+                System.out.printf("Permissions: %s\n",Permissions.MANAGE_PROJ.toString());
                 return Permissions.MANAGE_PROJ;
             case PA:
+                System.out.printf("Permissions: %s\n",Permissions.MANAGE_PROJ.toString());
                 return Permissions.MANAGE_PROJ;
             case IA:
+                System.out.printf("Permissions: %s\n",Permissions.MANAGE_INIT.toString());
                 return Permissions.MANAGE_INIT;
             case AE:
+                System.out.printf("Permissions: %s\n",Permissions.EDIT.toString());
                 return Permissions.EDIT;
             default:
+                System.out.printf("Permissions: %s\n",Permissions.NONE.toString());
                 return Permissions.NONE;
         }
     }
-
+    public ParticipantRole retrieveParticipant(int part) {
+        switch (part) {
+            case 0:
+                return ParticipantRole.ASST;
+            case 1:
+                return ParticipantRole.LEAD;
+            case 2:
+                return ParticipantRole.PART;
+            default:
+                return ParticipantRole.OTHER;
+        }
+    }
 
 }

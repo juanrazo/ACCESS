@@ -18,6 +18,7 @@ public class Test {
         /* Inserting bogus values with roles */
         testMap.put("Steve", rrm.associatePermissions(Roles.AE));
         testMap.put("Gator", rrm.associatePermissions(Roles.PI));
+        System.out.printf("Gator role: %s\n", Roles.PI.toString());
         testMap.put("Juan", rrm.associatePermissions(Roles.PA));
 
         System.out.println("*** Permissions within the ACCESS system ****");

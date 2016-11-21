@@ -1,6 +1,7 @@
 package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
-import java.util.Date;	
+import java.util.ArrayList;
+import java.util.Date;
 
 public class QueryHandler {
 
@@ -8,12 +9,18 @@ public class QueryHandler {
         //TODO fill in constructor initialization
     }
 
+
 	/* Pre-defined database retrieval (SELECT) queries */
     //private static Queries[] insertQueries;
 
 	/* Pre-defined database insertion (INSERT) queries */
     //private static Queries[] selectQueries;
 
+    public ArrayList<String> retrieveProject(){
+        ArrayList<String> temp = new ArrayList<String>();
+
+        return temp;
+    }
     /*
     This method accepts an integer for the first argument. The integer must be positive, cannont exist in the set
     of Project IDs already stored in the ACCESS database. If the set of Project IDs is empty, then the pid should
@@ -158,8 +165,6 @@ public class QueryHandler {
     public int insertInitiativeDocumentAttachment(int iid, String document_url) {
         return 0;
     }
-
-    ;
 
     /*
     This method accepts an integer for the first argument. The integer must be positive, cannot exist in the set of
