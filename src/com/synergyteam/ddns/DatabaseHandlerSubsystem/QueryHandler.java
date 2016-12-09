@@ -5,34 +5,29 @@ import java.util.Date;
 
 public class QueryHandler {
 
-    /*
-    This method accepts an integer for the first argument. The integer must be positive, cannont exist in the set
-    of Project IDs already stored in the ACCESS database. If the set of Project IDs is empty, then the pid should
-    equal 1, else it should equal the old value of pid + 1. The seconded argument accepts a BOOLEAN that should
-    only be TRUE if the project is funded. The third argument is a string for the project title. The constraint on
-    the title is it must be a valid project title. The fourth argument is a Date for the start date. The fifth
-    argument is a Date for the end date. The start date must be a date before the end date. The last argument is a
-    string for the project goal. The constraint for the goal is it must be a valid project goal. The method
-    returns 0 if the insert was unsuccessful, or 1 if the insert was successful.
-    //@ PRE:
-    //@requires
-    //@ fundedProject == (!pid.isFunded)? FALSE : TRUE;
-    //@ title == valid project.name;
-    //@ startDate < endDate;
-    //@ goal == valid project.goal;
-    //@ POST:
-    //@ (\foral pid | (pid \notexists {Project_ID} )) &&
-    //@ (pid == (!{Project_ID})? 1 : (pid ==
-    //@ \old pid + 1));
-    //@ensures \result (!SQLException && executeUpdate== 1)? pid : 0);
-    */
-    public int insertProject(String title, String desc, String startDate, String endDate, String goal) {
+
+    public int insertNonFundedProject(String title, String desc, String startDate, String endDate, String goal) {
         InsertQueries isq = new InsertQueries();
-        return new DatabaseHandlerManager().insertNonFundedProject(isq.insertNonFundedProject(
+        return new DatabaseHandlerManager().insertIntoAccessDB(isq.insertNonFundedProject(
                 title, desc, startDate, endDate, goal));
 
     }
 
+    public int insertNonFundedProjectMembership(int pid, int uid, String fName, String lName, String email,
+                                                String role){
+        InsertQueries isq = new InsertQueries();
+        return new DatabaseHandlerManager().insertIntoAccessDB(isq.insertNonFundedProjectMembership(
+                pid, uid, fName, lName, email, role ));
+    }
+
+    /*
+     * PRE:
+     * @requires title != null
+     *
+     * POST:
+     *  @ensures \result == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+     *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+     */
     public String[] retrieveNonFundedProjectInfoByTitle(String title){
         return new DatabaseHandlerManager().retrieveSingleNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByTitle(title) );
@@ -55,6 +50,7 @@ public class QueryHandler {
         return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByMembership(uid) );
     }
+    
     public QueryHandler() { /* Default Constructor */ }
 
 

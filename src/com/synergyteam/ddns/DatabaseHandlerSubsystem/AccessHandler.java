@@ -6,7 +6,13 @@ import java.util.ArrayList;
 
 public class AccessHandler extends DatabaseHandler {
 
-	protected int insertNonFundedProject(String query){
+    /*
+    * Method used to insert NonFundedProjects into the ACCESS database.
+    * PRE:
+    * @requires a valid ACCESS SQL Insert Statment that is not NULL.
+    * @ensures \result (!SQLException && execute == 1) 1: 0;
+    */
+	protected int insertIntoAccessDB(String query){
 
 		try {
 
