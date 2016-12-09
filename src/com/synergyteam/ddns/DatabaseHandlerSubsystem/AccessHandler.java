@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AccessHandler extends DatabaseHandler {
 
-	protected int insertNonFundedProject(String query){
+	protected int insertAccessDB(String query){
 
 		try {
 
