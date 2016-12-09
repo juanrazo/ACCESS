@@ -26,17 +26,28 @@ public class QueryHandler {
     //@ \old pid + 1));
     //@ensures \result (!SQLException && executeUpdate== 1)? pid : 0);
     */
+
     public int createNonFundedProject(String title, String desc, String startDate, String endDate, String goal) {
         InsertQueries isq = new InsertQueries();
-        return new DatabaseHandlerManager().insertNonFundedProject(isq.insertNonFundedProject(
+        return new DatabaseHandlerManager().insertAccessDB(isq.insertNonFundedProject(
                 title, desc, startDate, endDate, goal));
     }
 
     public int insertNonFundedProjectMembership(int pid, int uid, String fName, String lName, String email,
                                                 String role) {
         InsertQueries isq = new InsertQueries();
-        return new DatabaseHandlerManager().insertNonFundedProject(isq.insertNonFundedProjectMembership(pid, uid,
+        return new DatabaseHandlerManager().insertAccessDB(isq.insertNonFundedProjectMembership(pid, uid,
                 fName, lName, email, role));
+    }
+
+    public int insertNonFundedProjectKeyword(int pid, String keyword){
+        InsertQueries isq = new InsertQueries();
+        return new DatabaseHandlerManager().insertAccessDB(isq.insertNonFundedProjectKeyword(pid, keyword));
+    }
+
+    public int insertNonFundedProjectWebsite(int pid, String website){
+        InsertQueries isq = new InsertQueries();
+        return new DatabaseHandlerManager().insertAccessDB(isq.insertNonFundedProjectKeyword(pid, website));
     }
 
     public String[] retrieveNonFundedProjectInfoByTitle(String title){

@@ -36,7 +36,7 @@ public class DatabaseHandlerManager {
 		return new AccessHandler().retrieveMultNonFundedProjectInfo(query);
 	}
 
-	protected int insertNonFundedProject(String query){
+	protected int insertAccessDB(String query){
 		return new AccessHandler().insertAccessDB(query);
 	}
 
