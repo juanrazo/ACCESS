@@ -5,22 +5,6 @@ import java.util.Date;
 
 public class QueryHandler {
 
-    public QueryHandler() {
-        //TODO fill in constructor initialization
-    }
-
-
-	/* Pre-defined database retrieval (SELECT) queries */
-    //private static Queries[] insertQueries;
-
-	/* Pre-defined database insertion (INSERT) queries */
-    //private static Queries[] selectQueries;
-
-    public ArrayList<String> retrieveProject(){
-        ArrayList<String> temp = new ArrayList<String>();
-
-        return temp;
-    }
     /*
     This method accepts an integer for the first argument. The integer must be positive, cannont exist in the set
     of Project IDs already stored in the ACCESS database. If the set of Project IDs is empty, then the pid should
@@ -42,17 +26,38 @@ public class QueryHandler {
     //@ \old pid + 1));
     //@ensures \result (!SQLException && executeUpdate== 1)? pid : 0);
     */
-    public int insertProject(boolean fundedProject, String title, String desc, Date startDate,
-                             Date endDate, String goal, String objective, String key, String website) {
-        InsertQueries insertQ = new InsertQueries();
-        String query = insertQ.getinsertNonFundedQuery();
+    public int insertProject(String title, String desc, String startDate, String endDate, String goal) {
+        InsertQueries isq = new InsertQueries();
+        return new DatabaseHandlerManager().insertNonFundedProject(isq.insertNonFundedProject(
+                title, desc, startDate, endDate, goal));
 
-        //DatabaseHandlerManager dbmanager = new DatabaseHandlerManager();
-
-
-
-        return 0;
     }
+
+    public String[] retrieveNonFundedProjectInfoByTitle(String title){
+        return new DatabaseHandlerManager().retrieveSingleNonFundedProjectInfo(
+                new SelectQueries().selectNonFundedProjectInfoByTitle(title) );
+    }
+
+    public String[][] retrieveNonFundedProjectInfoByStartDate(String date){
+        return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
+                new SelectQueries().selectNonFundedProjectInfoByStartDate(date) );
+    }
+
+    public String[][] retrieveNonFundedProjectInfoByEndDate(String date){
+        return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
+                new SelectQueries().selectNonFundedProjectInfoByEndDate(date) );
+    }
+    public String[][] retrieveNonFundedProjectInfoByDateRange(String startDate, String endDate){
+        return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
+                new SelectQueries().selectNonFundedProjectInfoByDateRange(startDate,endDate) );
+    }
+    public String[][] retrieveNonFundedProjectInfoByMembership(int uid){
+        return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
+                new SelectQueries().selectNonFundedProjectInfoByMembership(uid) );
+    }
+    public QueryHandler() { /* Default Constructor */ }
+
+
 
     /* This method accepts a pid (project id) that is contained in the set of Project IDs stored in the ACCESS
     database. This method then accepts a userID and role which are then associated to the pid. The method returns 0
@@ -210,9 +215,9 @@ public class QueryHandler {
         return 0;
     }
 
-    public String[] retrieveNonFundedProjectInfoByTitle(String title){
-        SelectQueries sq = new SelectQueries();
-        DatabaseHandlerManager dbh = new DatabaseHandlerManager();
-        return dbh.retrieveNonFundedProjectInfoByTitle( sq.selectNonFundedProjectInfoByTitle(title) );
-    }
+
+
+
+
+
 }

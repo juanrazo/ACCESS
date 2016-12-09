@@ -23,25 +23,22 @@ public class DatabaseHandlerManager {
 	//@ \result[0]…result[n-1] == retrieved information from query; 
 	//@ \result[n] == query used to retrieve information;
 
-	protected String[] selectDatabase(String[] query) {
-		return null;
-
-	}
-
-	protected String[] insertIntoACCESS() {
-		return null;
-
-	}
 
 	public DatabaseHandlerManager() {
-		//TODO fill in constructor initialization
-	}
-	protected String[] retrieveNonFundedProjectInfoByTitle(String query){
-		AccessHandler ac = new AccessHandler();
-		return ac.retrieveNonFundedProjectInfoByTitle(query);
+
 	}
 
-	/* Pre-defined database names used to perform queries */
-	private static DatabaseHandler[] accessDatabases;
+	protected String[] retrieveSingleNonFundedProjectInfo(String query){
+		return new AccessHandler().retrieveSingleNonFundedProjectInfo(query);
+	}
+
+	protected String[][] retrieveMultNonFundedProjectInfo(String query){
+		return new AccessHandler().retrieveMultNonFundedProjectInfo(query);
+	}
+	protected int insertNonFundedProject(String query){
+		return new AccessHandler().insertNonFundedProject(query);
+	}
+
+
 }
 
