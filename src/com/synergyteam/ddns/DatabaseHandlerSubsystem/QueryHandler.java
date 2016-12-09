@@ -31,17 +31,26 @@ public class QueryHandler {
     string for the project goal. The constraint for the goal is it must be a valid project goal. The method
     returns 0 if the insert was unsuccessful, or 1 if the insert was successful.
     //@ PRE:
-    //@requires (\foral pid | (pid \notexists {Project_ID} )) &&
-    //@ (pid == (!{Project_ID})? 1 : (pid ==
-    //@ \old pid + 1));
+    //@requires
     //@ fundedProject == (!pid.isFunded)? FALSE : TRUE;
     //@ title == valid project.name;
     //@ startDate < endDate;
     //@ goal == valid project.goal;
     //@ POST:
-    //@ensures \result (!SQLException && executeUpdate== 1)? 1 : 0);
+    //@ (\foral pid | (pid \notexists {Project_ID} )) &&
+    //@ (pid == (!{Project_ID})? 1 : (pid ==
+    //@ \old pid + 1));
+    //@ensures \result (!SQLException && executeUpdate== 1)? pid : 0);
     */
-    public int insertProject(int pid, boolean fundedProject, String title, Date startDate, Date endDate, String goal) {
+    public int insertProject(boolean fundedProject, String title, String desc, Date startDate,
+                             Date endDate, String goal, String objective, String key, String website) {
+        InsertQueries insertQ = new InsertQueries();
+        String query = insertQ.getinsertNonFundedQuery();
+
+        //DatabaseHandlerManager dbmanager = new DatabaseHandlerManager();
+
+
+
         return 0;
     }
 
@@ -201,4 +210,9 @@ public class QueryHandler {
         return 0;
     }
 
+    public String[] retrieveNonFundedProjectInfoByTitle(String title){
+        SelectQueries sq = new SelectQueries();
+        DatabaseHandlerManager dbh = new DatabaseHandlerManager();
+        return dbh.retrieveNonFundedProjectInfoByTitle( sq.selectNonFundedProjectInfoByTitle(title) );
+    }
 }

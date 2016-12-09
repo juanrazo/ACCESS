@@ -10,23 +10,12 @@ import java.util.Calendar;
 public class DMHandler extends DatabaseHandler {
 
 	@Override
-	protected String[] retrieveDatavaseInfo(String[] query) {
+	protected String[] retrieveDatabaseInfo(String[] query) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	protected Connection intializeConnection() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	protected PreparedStatement prepStmt(String[] query) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public DMHandler(){
 		//TODO fill in variable initialization
 	}

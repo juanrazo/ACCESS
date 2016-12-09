@@ -1,8 +1,6 @@
 package com.synergyteam.ddns.DatabaseHandlerSubsystem;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public abstract class DatabaseHandler {
 
@@ -23,21 +21,40 @@ public abstract class DatabaseHandler {
 	//@ ensures \result (!SQLException) && (resultSet[0] != NULL) ? 
 	//@ (\result[0] == resultSet[0], ..., \result[n] == 
 	//@ resultSet[n-1] && \result[n] == query[0]) : \result[0] == “No //@ results found” && \result[1] == query[0];
-	abstract protected String[] retrieveDatavaseInfo(String[] query);
+	abstract protected String[] retrieveDatabaseInfo(String[] query);
 	
 	/* Method used to initialize connection */
-	abstract protected Connection intializeConnection() throws ClassNotFoundException, SQLException;
-	
+	protected Connection initializeConnection() throws ClassNotFoundException, SQLException{
+		Class.forName(JDBC_DRIVER);
+		System.out.println("starting connection");
+		System.out.println(this.ip);
+		return DriverManager.getConnection(this.ip, this.user, this.pass);
+	}
 	/* Method used to create SQL prepared statements */
-	abstract protected PreparedStatement prepStmt(String[] query) throws SQLException ;
-	
+
+	protected PreparedStatement prepStmt(String[] query, Connection conn) throws SQLException {
+		return conn.prepareStatement(query[0]);
+	}
+
+	protected void closeSqlVariables() throws SQLException {
+		this.conn.close();
+		this.stmt.close();
+		this.rs.close();
+		this.conn = null;
+		this.stmt = null;
+		this.rs = null;
+	}
+
+	/* variable declarations */
+	protected Connection conn;
+	protected int port;
+	protected PreparedStatement p_stmt;
+	protected ResultSet rs;
+	protected Statement stmt;
 	protected String ip;
 	protected String user;
 	protected String pass;
-	
-	protected int port;
-	protected Connection conn;
-	protected PreparedStatement stmt;
-	
+
+	static private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	
 }
