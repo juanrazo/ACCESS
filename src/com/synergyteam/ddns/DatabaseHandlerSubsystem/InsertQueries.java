@@ -13,6 +13,8 @@ public class InsertQueries extends Queries{
                 "`EndDate`, `Goal`) VALUES (0 , '" + title + "', '" + desc + "', '" + startDate +
                 "', '" + endDate + "', '" + goal + "')";
     }
+
+    //This method returns an SQL query to insert nonfundedprojectmembership into the database
     protected String insertNonFundedProjectMembership(int pid, int uid, String fName, String lName, String email,
                                                       String role ){
         return  "INSERT INTO `NonFundedProjectMembership`(`PID`, `UID`, `FName`, `LName`, `Email`, `Role`)  " +

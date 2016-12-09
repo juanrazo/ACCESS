@@ -45,21 +45,14 @@ public class AccessHandler extends DatabaseHandler {
 		return 1;
 
 	}
-	/* 
-	This method accepts a String array which contains a valid SQL insert statement at index 0 of the 
-	array.  The table name is located at index 1 of the array. Subsequent indices contain valid 
-	information required by the PreparedStatement (in sequential order) to successfully insert the 
-	tuple into the ACCESS Database. The method \result 1 \iff SQLException is caught && execute update 
-	indicates a successful insertion, or 0 otherwise. 
-	*/
-	//@ Pre:  
-	//@ requires (insertStmt[0] == valid ACCESS database SQL 
-	//@ INSERT statement) && (insertStmt[1] == valid table name 
-	//@ in ACCESS database);
 
-	//@ Post: 
-	//@ensures \result (!SQLException && executeUpdate== 1)? 1 : 0);
-
+	/*
+	 * PRE:
+	 *  @requires query != NULL && query valid SQL query for ACCESS database
+	 * POST:
+	 *  @ensures \result == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+	 *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+	 */
 	protected String[] retrieveSingleNonFundedProjectInfo(String query) {
 
 
@@ -90,6 +83,13 @@ public class AccessHandler extends DatabaseHandler {
 			return results.toArray(new String[results.size()]);
 	}
 
+	/*
+     * PRE:
+     *  @requires query != NULL && query valid SQL query for ACCESS database
+     * POST:
+     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+     *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+     */
 	protected String[][] retrieveMultNonFundedProjectInfo(String query) {
 
 		ArrayList<String> results = new ArrayList<String>();
