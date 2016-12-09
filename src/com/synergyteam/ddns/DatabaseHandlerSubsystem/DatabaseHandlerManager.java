@@ -37,7 +37,7 @@ public class DatabaseHandlerManager {
 	}
 
 	protected int insertAccessDB(String query){
-		return new AccessHandler().insertAccessDB(query);
+		return new AccessHandler().insertIntoAccessDB(query);
 	}
 
 
