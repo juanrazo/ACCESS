@@ -118,6 +118,41 @@ public class AccessHandler extends DatabaseHandler {
 			e.printStackTrace();
 		}
 
+		return getStrings(topList, i);
+	}
+
+	protected String[][] retrieveMultProjectMembershipInfo(String query) {
+
+		ArrayList<String> results = new ArrayList<String>();
+		ArrayList<String[]> topList = new ArrayList<String[]>();
+		int i = 0;
+		try {
+
+			this.conn = initializeConnection();
+			System.out.println("Started Connection");
+			this.stmt = this.conn.createStatement();
+			this.rs = stmt.executeQuery(query);
+			while (this.rs.next()) {
+
+				processProjectMembershipResultSet(results);
+				topList.add(results.toArray(new String[results.size()]));
+				results.clear();
+
+				i++;
+
+			}
+
+			closeSqlVariables();
+
+		} catch (SQLException | ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
+
+		return getStrings(topList, i);
+	}
+
+	private String[][] getStrings(ArrayList<String[]> topList, int i) {
 		if(!topList.isEmpty()){
 			String[][] returnResults = topList.toArray(new String[i][7]);
 			return returnResults;
@@ -125,6 +160,13 @@ public class AccessHandler extends DatabaseHandler {
 			String[][] returnResults = {{"No Results Found", "-1"}};
 			return returnResults;
 		}
+	}
+
+	private void processProjectMembershipResultSet(ArrayList<String> results) throws SQLException {
+		System.out.println(this.rs);
+		results.add("" + rs.getInt("PID"));
+		results.add("" + rs.getInt("UID"));
+		results.add("" + rs.getString("Role"));
 	}
 
 	private void processResultSet(ArrayList<String> results) throws SQLException {
