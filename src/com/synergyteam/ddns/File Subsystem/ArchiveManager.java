@@ -1,38 +1,29 @@
 
 public class ArchiveManager {
-	private String filename;
-	private String fileType;
-	private String userName; 
 
-/**/
-public boolean permissionToGetFileMetaData (String filename, String fileType){
-//if you are the owner of the file and file exists
-	return true;
-}
-
-/**/
-public boolean permissionToGetArchivePResource(String filename){
-	return true;
-}
-
-/**/
-public boolean permissionToGetArchiveIResource(String  filename){
-	return true;
-}
-/**/
-public boolean permissionToGetArchiveAResource(String filename){
-	return true;
-}
-
-/*Is the requested file in the system*/
-boolean fileExists(){
-	return true;
-}
 
 /*Need to be owner of a project or initiative
- *  to perform any CRUD operations 
- * on the  file of that type*/
-boolean isOwner(){
-	return true;
+*in order to perform any CRUD operations 
+* on the  file of that type*/
+private boolean isOwner(String fileName, String fileType, String userName){
+	//Searches for files data
+	Metadata data = new Metadata(fileName, fileType);
+	if(userName.equals(data.owner)) return true;
+	return false;
 }
+
+/*If user has permissions to access metadata*/
+public boolean permissionToGetFileMetaData (String fileName,String filetype, String userName){
+	if(isOwner(fileName, filetype, userName)) return true;
+	return false;
+}
+
+/*If user has permission to access metadata*/
+public boolean permissionToGetArchiveResource(String fileName, String fileType, String userName){
+	if(isOwner(fileName, fileType, userName)) return true;
+	return false;
+}
+
+
+
 }

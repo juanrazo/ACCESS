@@ -1,6 +1,8 @@
 public class Metadata {
+
 String fileType;
 String title;
+String owner;
 String category;
 String startDate;
 String endDate;
@@ -9,6 +11,7 @@ String []goals;
 String []objectives;
 String []envolvedStudents;
 String []envolvedFaculty;
+String []fileInformation;
 
 Metadata(String name, String type){
 	fileType = type;
@@ -24,7 +27,6 @@ public String[] copyArray(String []a){
 	return b;
 }
 
-//Build Metadata list
 //getters
 String getStartDate(){return startDate;}
 
@@ -37,6 +39,7 @@ String[] getGoals(){return goals;}
 String[] getObjectives(){return objectives;}
 
 //setters
+void setOwner(String o){this.owner = o;}
 void setStartDate(String s){this.startDate = s;}
 
 void setEndDate(String e){this.endDate = e;}
