@@ -121,6 +121,20 @@ public class AccessHandler extends DatabaseHandler {
 		return getStrings(topList, i);
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	protected String[][] retrieveMultProjectMembershipInfo(String query) {
 
 		ArrayList<String> results = new ArrayList<String>();
@@ -161,6 +175,13 @@ public class AccessHandler extends DatabaseHandler {
 			return returnResults;
 		}
 	}
+
+
+
+
+
+
+
 
 	private void processProjectMembershipResultSet(ArrayList<String> results) throws SQLException {
 		System.out.println(this.rs);

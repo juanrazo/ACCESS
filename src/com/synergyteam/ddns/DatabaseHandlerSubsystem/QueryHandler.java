@@ -6,6 +6,40 @@ import java.util.Date;
 public class QueryHandler {
 
     /*
+ * PRE:
+ *
+ * POST:
+ *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', int 'UID', 'Role' } :
+ *  { "Result not found", "-1" };
+ */
+    public String[][] retrieveMultProjectMembershipInfo(int uid){
+        return new DatabaseHandlerManager().retrieveMultProjectMembershipInfo(
+                new SelectQueries().selectProjectMembershipByUID(uid) );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     This method accepts an integer for the first argument. The integer must be positive, cannont exist in the set
     of Project IDs already stored in the ACCESS database. If the set of Project IDs is empty, then the pid should
     equal 1, else it should equal the old value of pid + 1. The seconded argument accepts a BOOLEAN that should
@@ -59,17 +93,40 @@ public class QueryHandler {
         return new DatabaseHandlerManager().retrieveSingleNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByTitle(title) );
     }
-    /*
-     * PRE:
-     *
-     * POST:
-     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', int 'UID', 'Role' } :
-     *  { "Result not found", "-1" };
-     */
-    public String[][] retrieveMultProjectMembershipInfo(int uid){
-        return new DatabaseHandlerManager().retrieveMultProjectMembershipInfo(
-                new SelectQueries().selectProjectMembershipByUID(uid) );
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
      * PRE:
