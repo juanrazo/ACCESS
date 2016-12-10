@@ -48,35 +48,65 @@ public String[] copyArray(String []a){
 public String[] getAssociatedActivities(){
 	String[] activityList, foundActivities;
 	
-	//gets list of Activities from Resource Subsystem
-	if(containsActivities( viewActivities(iniativeName) ) ) activityList = copyArray(foundActivities);
+	//gets list of all Activities from ACCESS since there was no restraints placed
+	if(containsActivities( viewActivities())) activityList = copyArray(foundActivities);
 	
 	return activityList;
 }
 
 //returns a list of activities associated under initiative category , and filtered items 
 public String[] getAssociatedFilteredActivities(){
-	//gets list of Activities from Resource Subsystem
-		if(containsActivities( viewActivities(fCheckList ) ) ) activityList = copyArray(foundActivities);
-		
-		return activityList;
-}
-
-//returns a list of activities associated under initiative category
-public String[] getAssociatedRestrictionActivities(){
-	if(containsActivities( viewActivities(rCheckList ) ) ) activityList = copyArray(foundActivities);
+	String[]activityList;
+	String[]foundActivities;
+	
+	//gets list of Activities from Resource Subsystem under filter items
+	foundActivities = viewActivities(fCheckList);
+	if(containsActivities(foundActivities) ) activityList = copyArray(foundActivities);
 	
 	return activityList;
 }
 
 //returns a list of activities associated under initiative category
-public String[] getAssociatedF&RActivities(){
-	if(containsActivities( viewActivities(fCheckList, rCheckList ) ) ) activityList = copyArray(foundActivities);
+public String[] getAssociatedRestrictionActivities(){
+	String[]activityList;
+	String[]foundActivities;
+	
+	//gets list of Activities from Resource Subsystem under restriction items
+	foundActivities = viewActivities(rCheckList);
+	if(containsActivities(foundActivities)) activityList = copyArray(foundActivities);
+	
 	return activityList;
 }
 
-returns a list of activities associated under initiative category
-private String[] list(String []queryResults);
-private int[] compare(String[] queryResults, int r1, int r2);
-int[] percentage(String[] queryResults);
+//returns a list of activities associated under initiative category
+public String[] getAssociatedFRActivities(){
+	String[]activityList;
+	String[]foundActivities;
+	
+	//gets list of Activities from Resource Subsystem under restriction items
+	foundActivities = viewActivities(fCheckList, rCheckList);
+	if(containsActivities(foundActivities)) activityList = copyArray(foundActivities);
+
+	return activityList;
+}
+
+//Analysis Computations 
+
+private String[] list(String []queryResults){
+	//algorithm
+	return null;
+}
+private int[] compare(String[] queryResults, int r1, int r2){
+	int[] result;
+	//algorithm 
+	
+	return result;
+}
+
+int[] percentage(String[] queryResults){
+	int[]result;
+	//algorithm
+	
+	return result ;
+}
 }
