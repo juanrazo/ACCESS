@@ -11,35 +11,46 @@ public class Tester {
 
         ResourceAccessManager ram = new ResourceAccessManager();
 
-        SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat("yyyymmdd", Locale.ENGLISH);
-        try {
-            sDate = simpleDateFormat.parse("20161120");
-            eDate = simpleDateFormat.parse("20181220");
-        } catch (ParseException e) {
-            e.printStackTrace();
+//        SimpleDateFormat simpleDateFormat =
+//                new SimpleDateFormat("yyyymmdd", Locale.ENGLISH);
+//        try {
+//            sDate = simpleDateFormat.parse("20161120");
+//            eDate = simpleDateFormat.parse("20181220");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        int test = -1;
+//
+//        test = ram.createNonFundedProject("Driver and stub testing",
+//                "Creating a false entry to determine the error handling of the system",
+//                sDate, eDate, "return 1 on successfull insert",
+//                "Finish by 2am", "test", "www.w3schools.com"); // expected result 1
+//        System.out.println("test = [" + test + "]");
+//        test = -1;
+//
+//        test = ram.createNonFundedProject("",
+//                "Creating a false entry to determine the error handling of the system",
+//                sDate, eDate, "return 1 on successfull insert",
+//                "Finish by 2am", "test", "www.w3schools.com"); // expected result 0
+//        System.out.println("test = [" + test + "]");
+//        test = -1;
+//
+//        test = ram.createNonFundedProject("DRIVER TESTING",
+//                "Creating a false entry to determine the error handling of the system",
+//                eDate, sDate,"return 1 on successfull insert",
+//                "Finish by 2am", "test", "www.w3schools.com"); // expected result 0
+//        System.out.println("test = [" + test + "]");
+
+//        String[] project = ram.viewProject("GIT");
+//        System.out.println(project[0]);
+
+
+        String[][] ownedResources = ram.viewNonFundedProjectsByMemberID(1);
+
+        String middle = "";
+        for(int i = 0; i < ownedResources.length; i++){
+            System.out.println( ownedResources[i][2]);
         }
-        int test = -1;
-
-        test = ram.createNonFundedProject("Driver and stub testing",
-                "Creating a false entry to determine the error handling of the system",
-                sDate, eDate, "return 1 on successfull insert",
-                "Finish by 2am", "test", "www.w3schools.com"); // expected result 1
-        System.out.println("test = [" + test + "]");
-        test = -1;
-
-        test = ram.createNonFundedProject("",
-                "Creating a false entry to determine the error handling of the system",
-                sDate, eDate, "return 1 on successfull insert",
-                "Finish by 2am", "test", "www.w3schools.com"); // expected result 0
-        System.out.println("test = [" + test + "]");
-        test = -1;
-
-        test = ram.createNonFundedProject("DRIVER TESTING",
-                "Creating a false entry to determine the error handling of the system",
-                eDate, sDate,"return 1 on successfull insert",
-                "Finish by 2am", "test", "www.w3schools.com"); // expected result 0
-        System.out.println("test = [" + test + "]");
     }
 
     private static Date sDate;
