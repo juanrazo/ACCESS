@@ -69,7 +69,7 @@ public class report {
 		 if(fileFormat < 0  || fileFormat > 1)
 			 return false; 
 		 if(permissionToAccessTofileHandler_createFile() == true){ 
-			 if (validateResourceRequest(initiativeID) == true){
+			 if (validateResourceRequest(activityID) == true){
 				if(fileFormat ==0)
 					retVal = true; // createPDF_File();
 				else 
