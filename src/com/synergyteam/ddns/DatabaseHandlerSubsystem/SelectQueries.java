@@ -32,4 +32,8 @@ public class SelectQueries extends Queries {
                 "b.UID =" + uid +";";
 
     }
+    protected String selectProjectMembershipByUID(int uid){
+        return "SELECT `PID`, `UID`, `FName`, `LName`, `Email`, `Role` FROM `NonFundedProjectMembership` " +
+                "WHERE `UID` = '" + uid + "'";
+    }
 }

@@ -27,6 +27,11 @@ public class QueryHandler {
     //@ensures \result (!SQLException && executeUpdate== 1)? pid : 0);
     */
 
+
+    public int insertActivity( String title, String description, Date startDate, Date endDate,
+                               String classification, String semester) {
+        return 0;
+    }
     public int createNonFundedProject(String title, String desc, String startDate, String endDate, String goal) {
         InsertQueries isq = new InsertQueries();
         return new DatabaseHandlerManager().insertAccessDB(isq.insertNonFundedProject(
@@ -54,20 +59,62 @@ public class QueryHandler {
         return new DatabaseHandlerManager().retrieveSingleNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByTitle(title) );
     }
+    /*
+     * PRE:
+     *
+     * POST:
+     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', int 'UID', 'Role' } :
+     *  { "Result not found", "-1" };
+     */
+    public String[][] retrieveMultProjectMembershipInfo(int uid){
+        return new DatabaseHandlerManager().retrieveMultProjectMembershipInfo(
+                new SelectQueries().selectProjectMembershipByUID(uid) );
+    }
 
+    /*
+     * PRE:
+     *
+     * POST:
+     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+     *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+     */
     public String[][] retrieveNonFundedProjectInfoByStartDate(String date){
         return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByStartDate(date) );
     }
 
+
+    /*
+     * PRE:
+     *
+     * POST:
+     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+     *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+     */
     public String[][] retrieveNonFundedProjectInfoByEndDate(String date){
         return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByEndDate(date) );
     }
+
+    /*
+     * PRE:
+     *
+     * POST:
+     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+     *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+     */
     public String[][] retrieveNonFundedProjectInfoByDateRange(String startDate, String endDate){
         return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByDateRange(startDate,endDate) );
     }
+
+    /*
+     * PRE:
+     *
+     * POST:
+     *  @ensures \result[1...n] == (result.exist() && !SQLException)? { int 'PID', tinyint 'fundedProject' == 0 | 1, 'Title',
+     *  'Description', 'startDate'. 'endDate', 'Goal' } : { "Result not found", "-1" };
+     */
     public String[][] retrieveNonFundedProjectInfoByMembership(int uid){
         return new DatabaseHandlerManager().retrieveMultNonFundedProjectInfo(
                 new SelectQueries().selectNonFundedProjectInfoByMembership(uid) );
@@ -220,10 +267,7 @@ public class QueryHandler {
     //@ POST:
     //@ensures \result (!SQLException && executeUpdate== 1)? 1 : 0);
     */
-    public int insertActivity(int aid, String title, String description, Date startDate, Date endDate,
-                              String classification, String semester) {
-        return 0;
-    }
+
 
     /* This method accepts an aid (activity id) that is contained in the set of Activity IDs stored in the ACCESS
     database. This method then accepts a keyword which is then associated to the aid. The method returns 0 if the

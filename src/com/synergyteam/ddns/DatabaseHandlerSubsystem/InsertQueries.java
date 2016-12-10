@@ -26,5 +26,9 @@ public class InsertQueries extends Queries {
     protected String insertNonFundedProjectWebsite(int pid, String website){
         return "INSERT INTO `ProjectKeywordTable` (`PID`, `Keyword`) VALUES ('" + pid + "', '" +  website + "');";
     }
+    protected String insertActivity( String title, String description, Date startDate, Date endDate,
+                                     String classification, String semester){
+        return "";
+    }
 
 }

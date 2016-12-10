@@ -40,6 +40,10 @@ public class DatabaseHandlerManager {
 		return new AccessHandler().insertIntoAccessDB(query);
 	}
 
+	protected String[][] retrieveMultProjectMembershipInfo(String query){
+		return new AccessHandler().retrieveMultProjectMembershipInfo( query);
+	}
+
 
 }
 
