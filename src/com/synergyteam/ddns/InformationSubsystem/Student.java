@@ -15,7 +15,9 @@ public class Student extends Personal {
  //@ student graduation date, valid student drop out date, student’s 
  //@  cumulative GPA, student’s major GPA, student’scompleted courses.
   */
-public String[] getStudentInformationByID(int studentID);
+public String[] getStudentInformationByID(int studentID){
+	return DatabaseHandlerManager.retrievDMInformation();
+}
    
  /*
  This method accepts a student ID and returns demographic information 
@@ -26,7 +28,9 @@ public String[] getStudentInformationByID(int studentID);
  //@ ensures \result is student’s gender, a valid date of birth,  
  //@ student’s citizenship, student’s race 
  */
-public String[] getStudentDemographicsByID(int studentID);
+public String[] getStudentDemographicsByID(int studentID){
+	return DatabaseHandlerManager.retrievDMInformation();
+}
  
  /*
  This method accepts a student ID and returns academic information
@@ -39,7 +43,9 @@ public String[] getStudentDemographicsByID(int studentID);
  //@ student drop out date, student’s cumulative GPA, student’s major 
  //@ GPA, student’s complete courses.
  */
-public String[] getStudentAcademicsByID(int studentID);
+public String[] getStudentAcademicsByID(int studentID){
+	return DatabaseHandlerManager.retrievDMInformation();
+}
  
  
  /*
@@ -53,7 +59,9 @@ public String[] getStudentAcademicsByID(int studentID);
  //@ enrollment date, valid graduation date, valid drop out date
  //@ cumulative GPA, major GPA, completed courses.
  */
-public String[] getStudentsInformation(int[] studentIDs);
+public String[] getStudentsInformation(int[] studentIDs){
+	return DatabaseHandlerManager.retrievDMInformation();
+}
  
  /*
  This method accepts multiple student ID and returns demographic   
@@ -63,7 +71,9 @@ public String[] getStudentsInformation(int[] studentIDs);
  //@ Post:
  //@ ensures \result is for each student, his/her gender, valid date of birth, citizenship, race
  */
-public String[] getStudentsDemographics(int[] studentIDs);
+public String[] getStudentsDemographics(int[] studentIDs){
+	return DatabaseHandlerManager.retrievDMInformation();
+}
   
  /*
  This method accepts multiple student IDs and returns academic  
@@ -76,6 +86,8 @@ public String[] getStudentsDemographics(int[] studentIDs);
  //@ valid enrollment date, valid graduation dates, valid drop out dates,  
  //@ cumulative GPA, major GPA, completed courses.
  */
-public String[] getStudentsAcademics(int[] studentIDs);
+public String[] getStudentsAcademics(int[] studentIDs){
+	return DatabaseHandlerManager.retrievDMInformation();
+}
 
 }
