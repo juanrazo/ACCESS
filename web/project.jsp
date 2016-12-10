@@ -73,7 +73,7 @@
 		<!-- Modal end-->
         <!-- /.row -->
         <div class="row">
-          <form role="form">
+          <form role="form" method="post" action="AddNonFunded">
           <div class="col-lg-12">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -83,45 +83,45 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label>* Title</label>
-                      <input class="form-control" placeholder="Title">
+                      <input class="form-control" placeholder="Title" name="projecttitle">
                     </div>
                   </div>
                     <!-- col-lg-4 (nested) -->
                     <div class="col-lg-3">
                       <div class="form-group">
                         <label>* Start Date</label>
-                        <input class="form-control" placeholder="Start Date">
+                        <input class="form-control" placeholder="Start Date" name="startdate">
                       </div>
                     </div>
                     <!--col-lg-4 (nested) -->
                     <div class="col-lg-3">
                       <div class="form-group">
                         <label>* End Date</label>
-                        <input class="form-control" placeholder="End Date">
+                        <input class="form-control" placeholder="End Date" name="enddate">
                       </div>
                     </div>
                     <div class="col-lg-7">
                       <div class="form-group">
                         <label>* Description</label>
-                        <input class="form-control" placeholder="Description">
+                        <input class="form-control" placeholder="Description" name="description">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label>Keyword(s)</label>
-                        <input class="form-control" placeholder="Keyword">
+                        <input class="form-control" placeholder="Keyword" name="keyword">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label>Goals</label>
-                        <input class="form-control" placeholder="Goals">
+                        <input class="form-control" placeholder="Goals" name="goals">
                       </div>
                     </div>
                     <div class="col-lg-5">
                       <div class="form-group">
                         <label>Objectives</label>
-                        <input class="form-control" placeholder="Objectives">
+                        <input class="form-control" placeholder="Objectives" name="objectives">
                       </div>
                     </div>
                     <div class="col-lg-4">
@@ -313,10 +313,10 @@
           </div>
           <div>* Required Fields</div>
           <p align="right">
-            <button align="right" type="submit" class="btn btn-default">Save</button>
-            <button type="submit" class="btn btn-default">Save and Return</button>
-            <button type="submit" class="btn btn-default">Delete</button>
-            <button type="reset" class="btn btn-default">Cancel</button>
+            <button name="AddNonFunded" align="right" type="submit" class="btn btn-default">Save</button>
+            <button name="saveandreturn" type="submit" class="btn btn-default">Save and Return</button>
+            <button name="delete" type="submit" class="btn btn-default">Delete</button>
+            <button name="cancel" type="reset" class="btn btn-default">Cancel</button>
           </p>
         </form>
         </div>
