@@ -80,7 +80,21 @@ public class report {
 	  }
 
 	  boolean generateActivityReport(int startDate, int endDate, int fileFormat){
-		  return false;
+		  boolean retVal = true;
+			 int initiativeID = 0; 
+			 if(fileFormat < 0  || fileFormat > 1)
+				 retVal= false; 
+			 if (startDate > endDate)
+				 retVal = false; 
+			 if(permissionToAccessTofileHandler_createFile() == true){ 
+				 if (validateResourceRequest(activityID) == true){
+					if(fileFormat ==0)
+						retVal = true; // createPDF_File();
+					else 
+						retVal = true; // createXLSX_File(); 
+				 }
+			 }
+			 return retVal; 
 	  }
 	  
 	  
